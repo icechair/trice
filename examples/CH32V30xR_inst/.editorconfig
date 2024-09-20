@@ -1,0 +1,34 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+[*]
+end_of_line = lf
+insert_final_newline = true
+charset = utf-8
+
+[*.{c,h,cc,hh,ccp,hpp}]
+indent_style = space
+indent_size = 4
+trim_trailing_whitespace = true
+
+[*.{js,json}]
+indent_style = space
+indent_size = 2
+trim_trailing_whitespace = true
+
+[*.{py}]
+indent_style = space
+indent_size = 4
+trim_trailing_whitespace = true
+
+[{CMakeLists.txt, *.cmake, &.rst}]
+indent_style = space
+indent_size = 4
+trim_trailing_whitespace = true
+
+[*.ld]
+indent_style = space
+indent_size = 2
+trim_trailing_whitespace = true

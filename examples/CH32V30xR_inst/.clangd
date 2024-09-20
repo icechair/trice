@@ -1,0 +1,21 @@
+CompileFlags:
+  Add:
+    - --target=riscv32-none-elf
+    - -march=rv32imafc_zicsr
+    - -I/home/marting/.local/xPacks/@xpack-dev-tools/riscv-none-elf-gcc/13.2.0-2.1/.content/riscv-none-elf/include/c++/13.2.0
+    - -I/home/marting/.local/xPacks/@xpack-dev-tools/riscv-none-elf-gcc/13.2.0-2.1/.content/riscv-none-elf/include/c++/13.2.0/riscv-none-elf/.
+    - -I/home/marting/.local/xPacks/@xpack-dev-tools/riscv-none-elf-gcc/13.2.0-2.1/.content/riscv-none-elf/include/c++/13.2.0/backward
+    - -I/home/marting/.local/xPacks/@xpack-dev-tools/riscv-none-elf-gcc/13.2.0-2.1/.content/lib/gcc/riscv-none-elf/13.2.0/include
+    - -I/home/marting/.local/xPacks/@xpack-dev-tools/riscv-none-elf-gcc/13.2.0-2.1/.content/lib/gcc/riscv-none-elf/13.2.0/include-fixed
+    - -I/home/marting/.local/xPacks/@xpack-dev-tools/riscv-none-elf-gcc/13.2.0-2.1/.content/riscv-none-elf/include
+  Remove:
+    - -findirect-inlining
+    - -flto=*
+    - -mabi=*
+    - -march=*
+# /home/marting/.local/xPacks/@xpack-dev-tools/riscv-none-elf-gcc/13.2.0-2.1/.content/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/include/c++/13.2.0
+# /home/marting/.local/xPacks/@xpack-dev-tools/riscv-none-elf-gcc/13.2.0-2.1/.content/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/include/c++/13.2.0/riscv-none-elf/.
+# /home/marting/.local/xPacks/@xpack-dev-tools/riscv-none-elf-gcc/13.2.0-2.1/.content/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/include/c++/13.2.0/backward
+# /home/marting/.local/xPacks/@xpack-dev-tools/riscv-none-elf-gcc/13.2.0-2.1/.content/bin/../lib/gcc/riscv-none-elf/13.2.0/include
+# /home/marting/.local/xPacks/@xpack-dev-tools/riscv-none-elf-gcc/13.2.0-2.1/.content/bin/../lib/gcc/riscv-none-elf/13.2.0/include-fixed
+# /home/marting/.local/xPacks/@xpack-dev-tools/riscv-none-elf-gcc/13.2.0-2.1/.content/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/include
