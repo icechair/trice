@@ -1,0 +1,32 @@
+BasedOnStyle: Microsoft
+PointerAlignment: Left
+SortIncludes: false
+IndentPPDirectives: BeforeHash
+BinPackArguments: false
+BinPackParameters: false
+InsertTrailingCommas: Wrapped
+SpaceBeforeParens: Never
+AlwaysBreakTemplateDeclarations: Yes
+PackConstructorInitializers: Never
+BreakConstructorInitializers: BeforeComma
+BreakInheritanceList: BeforeComma
+BreakBeforeBraces: Custom
+BraceWrapping:
+  SplitEmptyFunction: false
+  SplitEmptyRecord: false
+  SplitEmptyNamespace: false
+  AfterUnion: true
+  AfterStruct: true
+  AfterExternBlock: false
+AllowShortEnumsOnASingleLine: true
+AllowShortIfStatementsOnASingleLine: true
+AllowShortCaseLabelsOnASingleLine: false
+ColumnLimit: 90
+IndentWidth: 4
+AccessModifierOffset: -4
+AlignConsecutiveAssignments: true
+AlignConsecutiveMacros: true
+AlignConsecutiveDeclarations: true 
+BreakArrays: true
+NamespaceIndentation: All
+ReflowComments: false
