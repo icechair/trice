@@ -48,8 +48,8 @@ void Delay_Us(uint32_t n)
     i = (uint32_t)n * p_us;
 
     SysTick->CMP = i;
-    SysTick->CTLR |= (1 << 4); //Mode 1 => Count down
-    SysTick->CTLR |= (1 << 5) | (1 << 0); //INIT 1 -> update Counter Value, STE 1 => STK enabled
+    SysTick->CTLR |= (1 << 4);
+    SysTick->CTLR |= (1 << 5) | (1 << 0);
 
     while((SysTick->SR & (1 << 0)) != (1 << 0))
         ;

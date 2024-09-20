@@ -28,9 +28,9 @@
 #include "debug.h"
 
 /* Global define */
-#define TxSize1    (size(TxBuffer1))
-#define TxSize2    (size(TxBuffer2))
-#define size(a)    (sizeof(a) / sizeof(*(a)))
+#define TxSize1 (size(TxBuffer1))
+#define TxSize2 (size(TxBuffer2))
+#define size(a) (sizeof(a) / sizeof(*(a)))
 
 /* Global typedef */
 typedef enum
@@ -40,15 +40,17 @@ typedef enum
 } TestStatus;
 
 /* Global Variable */
-u8 TxBuffer1[] = "*Buffer1 Send from USART2 to USART3 using Interrupt!"; /* Send by UART2 */
-u8 TxBuffer2[] = "#Buffer2 Send from USART3 to USART2 using Interrupt!"; /* Send by UART3 */
-u8 RxBuffer1[TxSize1] = {0};                                             /* USART2 Using */
-u8 RxBuffer2[TxSize2] = {0};                                             /* USART3 Using  */
+uint8_t TxBuffer1[] =
+    "*Buffer1 Send from USART2 to USART3 using Interrupt!"; /* Send by UART2 */
+uint8_t TxBuffer2[] =
+    "#Buffer2 Send from USART3 to USART2 using Interrupt!"; /* Send by UART3 */
+uint8_t RxBuffer1[TxSize1] = {0};                           /* USART2 Using */
+uint8_t RxBuffer2[TxSize2] = {0};                           /* USART3 Using  */
 
-volatile u8 TxCnt1 = 0, RxCnt1 = 0;
-volatile u8 TxCnt2 = 0, RxCnt2 = 0;
+volatile uint8_t TxCnt1 = 0, RxCnt1 = 0;
+volatile uint8_t TxCnt2 = 0, RxCnt2 = 0;
 
-volatile u8 Rxfinish1 = 0, Rxfinish2 = 0;
+volatile uint8_t Rxfinish1 = 0, Rxfinish2 = 0;
 
 TestStatus TransferStatus1 = FAILED;
 TestStatus TransferStatus2 = FAILED;
@@ -67,7 +69,7 @@ void USART3_IRQHandler(void) __attribute__((interrupt()));
  * @return  PASSED - Buf1 identical to Buf
  *          FAILED - Buf1 differs from Buf2
  */
-TestStatus Buffercmp(uint8_t *Buf1, uint8_t *Buf2, uint16_t BufLength)
+TestStatus Buffercmp(uint8_t* Buf1, uint8_t* Buf2, uint16_t BufLength)
 {
     while(BufLength--)
     {
@@ -90,36 +92,36 @@ TestStatus Buffercmp(uint8_t *Buf1, uint8_t *Buf2, uint16_t BufLength)
  */
 void USARTx_CFG(void)
 {
-    GPIO_InitTypeDef  GPIO_InitStructure = {0};
+    GPIO_InitTypeDef  GPIO_InitStructure  = {0};
     USART_InitTypeDef USART_InitStructure = {0};
-    NVIC_InitTypeDef  NVIC_InitStructure = {0};
+    NVIC_InitTypeDef  NVIC_InitStructure  = {0};
 
     RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART2 | RCC_APB1Periph_USART3, ENABLE);
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_GPIOB, ENABLE);
 
     /* USART2 TX-->A.2   RX-->A.3 */
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2;
+    GPIO_InitStructure.GPIO_Pin   = GPIO_Pin_2;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+    GPIO_InitStructure.GPIO_Mode  = GPIO_Mode_AF_PP;
     GPIO_Init(GPIOA, &GPIO_InitStructure);
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_3;
+    GPIO_InitStructure.GPIO_Pin  = GPIO_Pin_3;
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
     GPIO_Init(GPIOA, &GPIO_InitStructure);
     /* USART3 TX-->B.10  RX-->B.11 */
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;
+    GPIO_InitStructure.GPIO_Pin   = GPIO_Pin_10;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+    GPIO_InitStructure.GPIO_Mode  = GPIO_Mode_AF_PP;
     GPIO_Init(GPIOB, &GPIO_InitStructure);
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_11;
+    GPIO_InitStructure.GPIO_Pin  = GPIO_Pin_11;
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
     GPIO_Init(GPIOB, &GPIO_InitStructure);
 
-    USART_InitStructure.USART_BaudRate = 115200;
-    USART_InitStructure.USART_WordLength = USART_WordLength_8b;
-    USART_InitStructure.USART_StopBits = USART_StopBits_1;
-    USART_InitStructure.USART_Parity = USART_Parity_No;
+    USART_InitStructure.USART_BaudRate            = 115200;
+    USART_InitStructure.USART_WordLength          = USART_WordLength_8b;
+    USART_InitStructure.USART_StopBits            = USART_StopBits_1;
+    USART_InitStructure.USART_Parity              = USART_Parity_No;
     USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
-    USART_InitStructure.USART_Mode = USART_Mode_Tx | USART_Mode_Rx;
+    USART_InitStructure.USART_Mode                = USART_Mode_Tx | USART_Mode_Rx;
 
     USART_Init(USART2, &USART_InitStructure);
     USART_ITConfig(USART2, USART_IT_RXNE, ENABLE);
