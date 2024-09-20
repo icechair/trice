@@ -35,20 +35,42 @@ target_sources(${PROJECT_NAME} PRIVATE
     SRC/Peripheral/src/ch32v30x_usart.c
     SRC/Peripheral/src/ch32v30x_wwdg.c
 
-    SRC/Debug/debug.c
+#    SRC/Debug/debug.c
+    User/debug.c
 
     User/ch32v30x_it.c
     User/main.c
     User/system_ch32v30x.c
+
+    trice/trice.c
+    trice/cobsDecode.c
+    trice/cobsEncode.c
+    trice/tcobsv1Decode.c
+    trice/tcobsv1Encode.c
+    trice/trice.c
+    trice/trice8.c
+    trice/trice16.c
+    trice/trice32.c
+    trice/trice64.c
+    trice/triceUart.c
+    trice/triceAuxiliary.c
+    trice/triceDoubleBuffer.c
+#    trice/triceRingBuffer.c
+#    trice/triceStackBuffer.c
+#    trice/triceStaticBuffer.c
+    trice/xtea.c
+
+    User/triceLogDiagData.c
+    User/triceCheck.c
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE
     SRC
     SRC/Core
-    SRC/Debug
+#    SRC/Debug
     SRC/Peripheral/inc
     User
-
+    ../../src
 )
 
 target_link_libraries(${PROJECT_NAME} toolchain)
