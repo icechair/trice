@@ -1,0 +1,86 @@
+{
+  "name": "wch-toolchain",
+  "keywords": [
+    "xpack"
+  ],
+  "config": {},
+  "devDependencies": {
+    "xpm": "^0.19.1"
+  },
+  "xpack": {
+    "minimumXpmRequired": "0.16.3",
+    "dependencies": {},
+    "devDependencies": {
+      "@xpack-dev-tools/riscv-none-elf-gcc": {
+        "specifier": "13.2.0-2.1",
+        "local": "link",
+        "platforms": "all"
+      },
+      "@xpack-dev-tools/cmake": {
+        "specifier": "3.27.9-1.2",
+        "local": "link",
+        "platforms": "all"
+      },
+      "@xpack-dev-tools/ninja-build": {
+        "specifier": "1.11.1-3.1",
+        "local": "link",
+        "platforms": "all"
+      }
+    },
+    "properties": {
+      "buildFolderRelativePath": "build",
+      "commandPrepare": "cmake -S . -B {{ properties.buildFolderRelativePath }} -G Ninja -D CMAKE_BUILD_TYPE={{ properties.buildType }} -D CMAKE_EXPORT_COMPILE_COMMANDS=ON -D CMAKE_COLOR_DIAGNOSTICS=ON",
+      "commandReconfigure": "{{ properties.commandPrepare }}",
+      "commandBuild": "cmake --build {{ properties.buildFolderRelativePath }}",
+      "commandClean": "cmake --build {{ properties.buildFolderRelativePath }} --target clean"
+    },
+    "actions": {
+      "ldd-cmake": ["ldd $(which cmake)"],
+      "printenv": [
+        "printenv",
+        "which cmake"
+      ],
+      "build-debug": [
+        "xpm run prepare --config debug",
+        "xpm run build --config debug"
+      ],
+      "build-release": [
+        "xpm run prepare --config release",
+        "xpm run build --config debug"
+      ],
+      "clean-debug": [
+        "xpm run clean --config debug"
+      ],
+      "clean-release": [
+        "xpm run clean --config release"
+      ]
+    },
+    "buildConfigurations": {
+      "debug": {
+        "properties": {
+          "buildType": "Debug"
+        },
+        "actions": {
+          "prepare": [
+            "{{ properties.commandPrepare }}"
+          ],
+          "build": [
+            "{{ properties.commandReconfigure }}",
+            "{{ properties.commandBuild }}"
+          ],
+          "clean": [
+            "{{ properties.commandClean }}"
+          ]
+        }
+      },
+      "release": {
+        "inherit": [
+          "debug"
+        ],
+        "properties": {
+          "buildType": "RelWithDebInfo"
+        }
+      }
+    }
+  }
+}
