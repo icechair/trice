@@ -27,7 +27,7 @@ target_compile_features(toolchain INTERFACE
     cxx_std_20
 )
 
-target_link_options(toolchain INTERFACE 
+target_link_options(toolchain INTERFACE
     -march=rv32imac_zicsr
     -mabi=ilp32
     --specs=nano.specs
@@ -44,7 +44,7 @@ target_compile_options(toolchain INTERFACE
     -ffunction-sections
     -fdata-sections
     -fstack-usage
-    -Os
+    -Og
     -g3
     -Wall
     -fno-common

@@ -9,7 +9,7 @@
 * Attention: This software (modified or not) and binary are used for
 * microcontroller manufactured by Nanjing Qinheng Microelectronics.
 *******************************************************************************/
-#include "ch32v30x_it.h"
+#include "ch32v30x.h"
 
 void NMI_Handler(void) __attribute__((interrupt()));
 void HardFault_Handler(void) __attribute__((interrupt()));

@@ -55,9 +55,9 @@ target_sources(${PROJECT_NAME} PRIVATE
     trice/triceUart.c
     trice/triceAuxiliary.c
     trice/triceDoubleBuffer.c
-#    trice/triceRingBuffer.c
-#    trice/triceStackBuffer.c
-#    trice/triceStaticBuffer.c
+    trice/triceRingBuffer.c
+    trice/triceStackBuffer.c
+    trice/triceStaticBuffer.c
     trice/xtea.c
 
     User/triceLogDiagData.c
@@ -70,7 +70,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 #    SRC/Debug
     SRC/Peripheral/inc
     User
-    ../../src
+    trice
 )
 
 target_link_libraries(${PROJECT_NAME} toolchain)
